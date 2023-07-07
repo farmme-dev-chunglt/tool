@@ -1,0 +1,12 @@
+{
+  "name": "My Selenium Extension",
+  "version": "1.0",
+  "description": "Build an Extension!",
+  "manifest_version": 3,
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["index.js"]
+    }
+  ]
+}
