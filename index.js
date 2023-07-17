@@ -1,61 +1,53 @@
-// const { By, Key, Builder } = require("selenium-webdriver");
-
+const { By, Key, Builder } = require("selenium-webdriver");
+// const { Builder } = require('selenium-webdriver');
+const chrome = require('selenium-webdriver/chrome');
 // const file = 14
 
-// const openBrower = async () =>{
-//     var text = ""
-//     driver = await new Builder().forBrowser('chrome').build();
-//     await driver.get('file:///D:/Tool/Content%20Up%20Video/Trang%20t%C3%ADnh5.html');
-//     let elements = await driver.findElements(By.className('softmerge-inner'));
-//     let elementsFile = await driver.findElements(By.className('s0'));
-//     for(let e=0; e<elementsFile.length; e++)
-//     {
-//         let check = await elementsFile[e].getText()
-//         if (check == file) {
-//             text = await elements[e].getText();
-//             await driver.get('https://www.google.com/?gws_rd=ssl');
-//             await driver.findElement(By.name('q')).sendKeys(text, Key.RETURN);
-//         }
-//     }    
-// }
-// openBrower()
-
-const { Builder, By, Key, until } = require('selenium-webdriver');
-const chrome = require('selenium-webdriver/chrome');
-const path = require('chromedriver').path;
-
-// Đường dẫn đến driver Chrome
-const service = new chrome.ServiceBuilder(path).build();
-chrome.setDefaultService(service);
-
-// Tạo driver và kết nối với trình duyệt Chrome
-const driver = new Builder()
-  .forBrowser('chrome')
-  .build();
-  
-async function example() {
-  // Khởi tạo driver để kết nối với trình duyệt đã được mở sẵn
-  let driver = await new Builder()
-    .usingServer('http://localhost:9222') // URL đặc biệt để kết nối với trình duyệt đã mở sẵn
-    .forBrowser('chrome')
-    .build();
-
-  try {
-    // Điều khiển trình duyệt đã được mở sẵn
-    // Ví dụ: Mở trang web Google
-    await driver.get('https://www.google.com');
-
-    // Thực hiện các hành động khác trên trình duyệt
-
-    // Ví dụ: Tìm phần tử input và gửi dữ liệu vào
-    // await driver.findElement(By.name('q')).sendKeys('Selenium', Key.RETURN);
-
-  } finally {
-    // Đóng kết nối tới trình duyệt, nhưng không tắt trình duyệt
-    await driver.close();
-  }
+const email= "chunglt@paditech.com"
+const pass= "Thanhchung110!"
+const file = "C:\\Users\\Admin\\Downloads\\Snaptik.app_7177757866605038875.mp4"
+const chrome2222 = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+const openBrower = async () =>{ 
+    // setup browser
+    const chromeOptions = new chrome.Options();
+    chromeOptions.excludeSwitches('enable-automation');
+    chromeOptions.addArguments('--disable-infobars');
+    driver = await new Builder()
+        .forBrowser('chrome')
+        .setChromeOptions(chromeOptions)
+        .build();
+    // connect website
+    await driver.get('https://studio.youtube.com/');
+    await driver.findElement(By.name('identifier')).sendKeys(email, Key.RETURN);
+    await driver.sleep(4000)
+    await driver.findElement(By.name('Passwd')).sendKeys(pass, Key.RETURN);
+    await driver.sleep(3000)
+    await driver.findElement(By.id('menu-item-1')).click();
+    await driver.findElement(By.id('create-icon')).click();
+    await driver.findElement(By.id('text-item-0')).click();
+    await driver.sleep(10000)
+    await driver.findElement(By.name('Filedata')).sendKeys(file);
+    await driver.sleep(10000)
+    //title file
+    let textInput = await driver.findElements(By.id('textbox'))
+    await textInput[0].clear()
+    await textInput[0].sendKeys("test123")
+    await textInput[1].clear()
+    await textInput[1].sendKeys("test123")
+    await driver.sleep(10000)
+    await driver.findElement(By.name('VIDEO_MADE_FOR_KIDS_MFK')).click()
+    
+    await driver.findElement(By.id('next-button')).click()
+    await driver.sleep(1000)
+    await driver.findElement(By.id('next-button')).click()
+    await driver.sleep(1000)
+    await driver.findElement(By.id('next-button')).click()
+    await driver.sleep(1000)
+    await driver.findElement(By.name('PUBLIC')).click()
+    await driver.findElement(By.id('done-button')).click()
+    await driver.sleep(5000)
+    await driver.findElement(By.id('close-icon-button')).click()
+   
 }
-
-example();
-
-
+openBrower()
+ 
