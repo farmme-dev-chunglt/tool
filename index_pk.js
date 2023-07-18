@@ -7,14 +7,14 @@ const { Options } = chrome;
 
 (async function example() {
   // Đường dẫn tuyệt đối đến ChromeDriver
-  const chromeDriverPath = 'C:\\Program Files\\Google\\Chrome\\Application\\chromedriver.exe';
+  const chromeDriverPath = 'D:\\Tool\\test\\New folder\\chromedriver.exe';
 
   // Thiết lập biến môi trường 'webdriver.chrome.driver'
   process.env['webdriver.chrome.driver'] = chromeDriverPath;
 
   // Khởi tạo trình điều khiển với ChromeOptions
   const options = new Options().setChromeBinaryPath('C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe');
-  options.addArguments('--remote-debugging-port=9515'); // Tùy chọn gỡ lỗi từ xa
+  options.addArguments('--remote-debugging-port=9222'); // Tùy chọn gỡ lỗi từ xa
 
   const driver = await new Builder()
     .forBrowser('chrome')
@@ -29,7 +29,7 @@ const { Options } = chrome;
     // Ví dụ: Lấy tiêu đề trang web
     const title = await driver.getTitle();
     console.log('Tiêu đề trang web:', title);
-  } finally {
+  } catch {
     // Đóng trình điều khiển
     await driver.quit();
   }
